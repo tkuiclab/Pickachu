@@ -1,0 +1,25 @@
+{
+    "configurations": [
+        {
+            "browse": {
+                "databaseFilename": "",
+                "limitSymbolsToIncludedHeaders": true,
+                "path": [
+                    "/home/tai/catkin_ws/devel/include",
+                    "/opt/ros/indigo/include",
+                    "/home/tai/catkin_ws/src/accupick3d/include",
+                    "/usr/include"
+                ]
+            },
+            "includePath": [
+                "/home/tai/catkin_ws/devel/include",
+                "/opt/ros/indigo/include",
+                "/home/tai/catkin_ws/src/accupick3d/include",
+                "/usr/include"
+            ],
+            "name": "Linux",
+            "intelliSenseMode": "clang-x64"
+        }
+    ],
+    "version": 4
+}

@@ -1,0 +1,48 @@
+<!-- 2018.06.07 -->
+<!-- <author email="wenchih_tai@solomon.com.tw">Wenchih Tai</author> -->
+<!-- 06.07 -->
+<!-- Append the read back the return message from socket with cmd:252 -->
+
+<launch>
+  <arg name="could_input_name" default="/accupick3d/pcPkg" />
+  <arg name="could_output_name" default="/accupick3d/output" />
+  <arg name="frame_id" default="/world" />
+  <arg name="auto_load_data" default="0" />
+
+  <!-- 
+    To fetch the point cloud 3d data and image from accupick3d scanner softawre
+    rostopic pub /accupick3d/cmd accupick3d/cmd "{cmd: 255}"-->
+  <node pkg="accupick3d" type="accupick3d_node" name="accupick3d" output="screen" >
+    <param name="frame_id" type="string" value="$(arg frame_id)" />
+    <param name="cloud_input_name" type="string" value="$(arg could_input_name)" />
+    <param name="cloud_output_name" type="string" value="$(arg could_output_name)" />
+    <param name="auto_load_data" type="int" value="$(arg auto_load_data)" />
+    
+    <!-- 
+    To save the point cloud 3d data and image to default PCD and PPM file
+    rostopic pub /accupick3d/cmd accupick3d/cmd "{cmd: 300}"
+    To load the point cloud 3d data from default PCD file
+    rostopic pub /accupick3d/cmd accupick3d/cmd "{cmd: 310}" -->
+    <!-- 
+    To save the point cloud 3d data to  default PCD file
+    rostopic pub /accupick3d/cmd accupick3d/cmd "{cmd: 301}"
+    To load the point cloud 3d data from default PCD file
+    rostopic pub /accupick3d/cmd accupick3d/cmd "{cmd: 311}" -->
+    <param name="pcd_file" type="string" value="$(find accupick3d)/data/sample.pcd" />
+    
+    <!-- 
+    To save the image data to  default PPM file
+    rostopic pub /accupick3d/cmd accupick3d/cmd "{cmd: 302}"
+    To load the image data from default PPM file
+    rostopic pub /accupick3d/cmd accupick3d/cmd "{cmd: 312}" -->
+    <param name="img_file" type="string" value="$(find accupick3d)/data/sample.ppm" />   
+
+  </node>
+
+  <node name="accupick3d_driver" pkg="accupick3d_driver" type="accupick3d_driver_node"  output="screen" />
+  <arg name="debug" default="false" />
+  <arg name="command_args" value="-d $(find accupick3d)/launch/accupick.rviz" />
+  <node name="$(anon rviz)" pkg="rviz" type="rviz" respawn="false"	args="$(arg command_args)" output="screen"/>
+
+
+</launch>
