@@ -1,0 +1,7 @@
+<launch>
+  <node name="image_saver" pkg="image_view" type="image_view" respawn="false" output="screen">
+    <remap from="image" to="/usb_cam/image_raw"/>
+    <param name="filename_format" type="str" value="image%04d.%s" />
+    <param name="save_all_image" type="bool" value="false" />
+  </node>
+</launch>
