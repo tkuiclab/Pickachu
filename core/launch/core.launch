@@ -1,7 +1,9 @@
 <launch>
-  <node name="image_saver" pkg="image_view" type="image_view" respawn="false" output="screen">
-    <remap from="image" to="/usb_cam/image_raw"/>
-    <param name="filename_format" type="str" value="image%04d.%s" />
-    <param name="save_all_image" type="bool" value="false" />
+  <node name="main" pkg="core" type="main.py" respawn="false" output="screen"></node>
+  <node name="image_saver" pkg="image_view" type="image_saver" respawn="false" output="screen">
+    <remap from="image" to="/accupick3d/image"/>
+    <!--<param name="filename_format" type="str" value="$(find core)/images/image%04d.%s" />-->
+    <param name="filename_format" type="str" value="$(find core)/images/image.jpg" />
+    <param name="save_all_image" type="bool" value="true" />
   </node>
 </launch>
