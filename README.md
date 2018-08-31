@@ -1,6 +1,14 @@
 # Pickachu
 2018 Taiwan Pickathon Challenge
 
+## Download and Build
+```bash
+$ mkdir pickachu_ws/src && cd pickachu_ws/src
+$ git clone https://github.com/tkuiclab/Pickachu.git
+$ cd ~/pickachu_ws
+$ catkin_make
+```
+
 ## Startup Process
 ```bash
 $ source <WORKSPACE_OF_PICKACHU>/devel/setup.bash
